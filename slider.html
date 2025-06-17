@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slider Gambar - Jasa Penyewaan Mobil</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #2a4d69;
+      --color-accent: #f08a5d;
+      --color-bg: #f4f4f9;
+      --color-text: #333;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    
+    #loading {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transition: opacity 0.4s ease;
+    }
+    #loading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: var(--color-primary);
+    }
+
+    
+    nav.navbar {
+      background-color: var(--color-primary);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1040;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+    }
+    nav.navbar a.navbar-brand {
+      color: white;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+    }
+    nav.navbar .nav-link {
+      color: #cce0ff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav.navbar .nav-link:hover,
+    nav.navbar .nav-link.active {
+      color: var(--color-accent);
+    }
+
+    
+    main.container-main {
+      max-width: 960px;
+      margin: 0 auto 3rem;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    main.container-main h2 {
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--color-primary);
+    }
+
+    
+    .carousel-item img {
+      border-radius: 0.5rem;
+      object-fit: cover;
+      width: 100%;
+      max-height: 450px;
+    }
+    .carousel-caption {
+      background: rgba(42, 77, 105, 0.65);
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+    }
+    .carousel-caption h5 {
+      font-weight: 700;
+      color: var(--color-accent);
+      font-size: 1.75rem;
+    }
+    .carousel-caption p {
+      color: white;
+      font-size: 1rem;
+    }
+
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: var(--color-primary);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div id="loading" aria-label="Loading content" role="status">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+
+  
+  <nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand" tabindex="0">Penyewaan Mobil</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
+          <li class="nav-item"><a href="tabel.html" class="nav-link">Tabel</a></li>
+          <li class="nav-item"><a href="slider.html" class="nav-link active" aria-current="page">Slider</a></li>
+          <li class="nav-item"><a href="form.html" class="nav-link">Form</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <main class="container-main" role="main">
+    <h2>Galeri Mobil Penyewaan</h2>
+
+    <div id="carCarousel" class="carousel slide" data-bs-ride="carousel" aria-label="Slider gambar mobil penyewaan">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Gambar 1"></button>
+        <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="1" aria-label="Gambar 2"></button>
+        <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="2" aria-label="Gambar 3"></button>
+      </div>
+      <div class="carousel-inner rounded">
+        <div class="carousel-item active">
+          <img src="c:\Users\rpl\Downloads\images avanza 2025.jfif" class="d-block w-100" alt="Mobil Toyota Avanza berwarna hitam" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Toyota Avanza</h5>
+            <p>Mobil MPV nyaman untuk keluarga, kapasitas 7 orang.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="c:\Users\rpl\Downloads\2887976963-kk2n2yvzpk8hd honda jazz.jpg" class="d-block w-100" alt="Mobil Honda Jazz berwarna kuning" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Honda Jazz</h5>
+            <p>Mobil hatchback sporty dan lincah di perkotaan.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="c:\Users\rpl\Downloads\images xpander.jfif" class="d-block w-100" alt="Mobil Mitsubishi Xpander abu abu mewah" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Mitsubishi Xpander</h5>
+            <p>SUV mewah dengan kapasitas dan kenyamanan ekstra.</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev" aria-label="Gambar sebelumnya">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next" aria-label="Gambar selanjutnya">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2024 Jasa Penyewaan Mobil. All rights reserved.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loading = document.getElementById('loading');
+      loading.classList.add('hide');
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 400);
+    });
+  </script>
+</body>
+</html>

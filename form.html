@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Penyewaan - Jasa Penyewaan Mobil</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #2a4d69;
+      --color-accent: #f08a5d;
+      --color-bg: #f4f4f9;
+      --color-text: #333;
+      --color-error: #c53030;
+      --transition: 0.3s ease;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding-top: 70px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #loading {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transition: opacity 0.4s ease;
+    }
+    #loading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: var(--color-primary);
+    }
+
+    nav.navbar {
+      background-color: var(--color-primary);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1040;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+    }
+    nav.navbar a.navbar-brand {
+      color: white;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+    }
+    nav.navbar .nav-link {
+      color: #cce0ff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav.navbar .nav-link:hover,
+    nav.navbar .nav-link.active {
+      color: var(--color-accent);
+    }
+
+    main.container-main {
+      max-width: 480px;
+      margin: 2rem auto 4rem;
+      padding: 1rem 1rem 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    }
+    main.container-main h2 {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--color-primary);
+      text-align: center;
+    }
+
+    form .form-group {
+      margin-bottom: 1.3rem;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.4rem;
+      color: var(--color-primary);
+    }
+    input, button {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      border: 1.8px solid #cccccc;
+      transition: border-color var(--transition);
+    }
+    input:focus {
+      border-color: var(--color-accent);
+      outline: none;
+      box-shadow: 0 0 6px var(--color-accent);
+    }
+
+    button {
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background-color var(--transition);
+    }
+    button:hover {
+      background-color: #1f3a53;
+    }
+
+    .error-msg {
+      color: var(--color-error);
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    .error-visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading" aria-label="Loading content" role="status">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+
+  <nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand" tabindex="0">Penyewaan Mobil</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
+          <li class="nav-item"><a href="tabel.html" class="nav-link">Tabel</a></li>
+          <li class="nav-item"><a href="slider.html" class="nav-link">Slider</a></li>
+          <li class="nav-item"><a href="form.html" class="nav-link active" aria-current="page">Form</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-main" role="main">
+    <h2>Form Penyewaan Mobil</h2>
+    <form id="rentalForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" required aria-describedby="emailError" aria-invalid="false" placeholder="contoh: email@domain.com" />
+        <div id="emailError" class="error-msg">Mohon masukkan email yang valid.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password <span aria-hidden="true">*</span></label>
+        <input type="password" id="password" name="password" required aria-describedby="passwordError" aria-invalid="false" placeholder="Minimal 8 karakter" />
+        <div id="passwordError" class="error-msg">
+          Password harus minimal 8 karakter, mengandung huruf besar, huruf kecil, dan angka.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username <span aria-hidden="true">*</span></label>
+        <input type="text" id="username" name="username" required minlength="5" maxlength="20" aria-describedby="usernameError" aria-invalid="false" placeholder="5-20 karakter" />
+        <div id="usernameError" class="error-msg">
+          Username harus terdiri dari 5 sampai 20 karakter.
+        </div>
+      </div>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2024 Jasa Penyewaan Mobil. All rights reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loading = document.getElementById('loading');
+      loading.classList.add('hide');
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 400);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('rentalForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const usernameInput = document.getElementById('username');
+
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const usernameError = document.getElementById('usernameError');
+
+      function setError(input, errorDiv, show) {
+        if(show) {
+          errorDiv.classList.add('error-visible');
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          errorDiv.classList.remove('error-visible');
+          input.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        let valid = true;
+
+        if(!emailInput.checkValidity()) {
+          setError(emailInput, emailError, true);
+          valid = false;
+        } else {
+          setError(emailInput, emailError, false);
+        }
+
+        const pwd = passwordInput.value;
+        const pwdValid = pwd.length >= 8 &&
+                          /[A-Z]/.test(pwd) &&
+                          /[a-z]/.test(pwd) &&
+                          /[0-9]/.test(pwd);
+        if(!pwdValid) {
+          setError(passwordInput, passwordError, true);
+          valid = false;
+        } else {
+          setError(passwordInput, passwordError, false);
+        }
+
+        const uname = usernameInput.value.trim();
+        if(uname.length < 5 || uname.length > 20) {
+          setError(usernameInput, usernameError, true);
+          valid = false;
+        } else {
+          setError(usernameInput, usernameError, false);
+        }
+
+        if(valid) {
+          alert('Form berhasil dikirim!');
+          form.reset();
+        }
+      });
+
+      emailInput.addEventListener('input', () => {
+        setError(emailInput, emailError, !emailInput.checkValidity());
+      });
+      passwordInput.addEventListener('input', () => {
+        const pwd = passwordInput.value;
+        const pwdValid = pwd.length >= 8 &&
+                          /[A-Z]/.test(pwd) &&
+                          /[a-z]/.test(pwd) &&
+                          /[0-9]/.test(pwd);
+        setError(passwordInput, passwordError, !pwdValid);
+      });
+      usernameInput.addEventListener('input', () => {
+        const uname = usernameInput.value.trim();
+        setError(usernameInput, usernameError, uname.length < 5 || uname.length > 20);
+      });
+    });
+  </script>
+</body>
+</html>
+

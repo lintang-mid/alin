@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produk - Jasa Penyewaan Mobil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #2a4d69;
+      --color-accent: #f08a5d;
+      --color-bg: #f4f4f9;
+      --color-text: #000000;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding-top: 70px; 
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+   
+    #loading {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transition: opacity 0.4s ease;
+    }
+    #loading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: var(--color-primary);
+    }
+
+    nav.navbar {
+      background-color: var(--color-primary);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1040;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+    }
+    nav.navbar a.navbar-brand {
+      color: white;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+    }
+    nav.navbar .nav-link {
+      color: #cce0ff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav.navbar .nav-link:hover,
+    nav.navbar .nav-link.active {
+      color: var(--color-accent);
+    }
+
+    main.container-main {
+      max-width: 960px;
+      margin: 0 auto 4rem;
+      padding: 2rem 1rem 1rem;
+    }
+    main.container-main h2 {
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--color-primary);
+      text-align: center;
+    }
+    .product-card {
+      position: relative;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(240, 138, 93, 0.4);
+    }
+    .product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 1rem;
+      flex-grow: 1;
+      position: relative;
+    }
+    .product-info h5 {
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .product-info p {
+      font-size: 0.9rem;
+      color: #0a0909;
+      margin-bottom: 1rem;
+      min-height: 48px;
+    }
+
+    .product-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgb(42, 77, 105);
+      color: white;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 0.5rem;
+    }
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+    .product-overlay p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 576px) {
+      main.container-main {
+        padding: 1rem 0.75rem 2rem;
+      }
+      .product-image {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading" aria-label="Loading content" role="status">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand" tabindex="0">Penyewaan Mobil</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="produk.html" class="nav-link active" aria-current="page">Produk</a></li>
+          <li class="nav-item"><a href="tabel.html" class="nav-link">Tabel</a></li>
+          <li class="nav-item"><a href="slider.html" class="nav-link">Slider</a></li>
+          <li class="nav-item"><a href="form.html" class="nav-link">Form</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-main" role="main" aria-label="Daftar produk mobil yang tersedia">
+    <h2>Daftar Produk Mobil</h2>
+    <div class="row g-4">
+      <div class="col-sm-6 col-md-4">
+        <article class="product-card" tabindex="0" aria-describedby="desc1">
+          <img src="c:\Users\rpl\Downloads\images avanza.jfif" alt="Mobil Toyota Avanza berwarna putih" class="product-image" />
+          <div class="product-info">
+            <h5>Toyota Avanza</h5>
+            <p id="desc1">Mobil MPV populer, cocok untuk keluarga dan perjalanan jauh.</p>
+            <div class="product-overlay" aria-hidden="true">
+              <p>Mesin 1500cc, kapasitas 7 penumpang.</p>
+              <p>Harga sewa: Rp 400.000 / hari</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <article class="product-card" tabindex="0" aria-describedby="desc2">
+          <img src="c:\Users\rpl\Downloads\2887976963-kk2n2yvzpk8hd honda jazz.jpg" alt="Mobil Honda Jazz berwarna kuning" class="product-image" />
+          <div class="product-info">
+            <h5>Honda Jazz</h5>
+            <p id="desc2">Mobil hatchback sporty, lincah dan nyaman di perkotaan.</p>
+            <div class="product-overlay" aria-hidden="true">
+              <p>Mesin 1300cc, kapasitas 5 penumpang.</p>
+              <p>Harga sewa: Rp 450.000 / hari</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <article class="product-card" tabindex="0" aria-describedby="desc3">
+          <img src="c:\Users\rpl\Downloads\images xpander.jfif" alt="Mobil Mitsubishi xpander berwarna abu abu" class="product-image" />
+          <div class="product-info">
+            <h5>Mitsubishi xpander</h5>
+            <p id="desc3">SUV mewah, untuk petualangan dan kenyamanan ekstra.</p>
+            <div class="product-overlay" aria-hidden="true">
+              <p>Mesin 2500cc, kapasitas 7 penumpang.</p>
+              <p>Harga sewa: Rp 850.000 / hari</p>
+            </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2024 Jasa Penyewaan Mobil. All rights reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    window.addEventListener('load', function () {
+      const loader = document.getElementById('loading');
+      loader.classList.add('hide');
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 400);
+    });
+  </script>
+</body>
+</html>
